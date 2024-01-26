@@ -14,9 +14,9 @@
 
 <body>
 
-    <div class="container">
-        <div class="wrapper">
-            <div class="weatherdash">
+    <div class="weather-dash-container">
+        <div class="weather-dash-wrapper">
+            <div class="weatherdash-app">
                 <div class="row">
 
                     <aside class="col-lg-3">
@@ -38,22 +38,75 @@
                                 </div>
                             </div>
                         </form>
-                        <!-- space for location overview section; city and last updated search -->
-                        <!-- space for list of recent searches with localstorage -->                    
+                        <!-- space for location overview and recent search section; city and last updated search -->
+                        <!-- localstorage -->
                     </aside>
                     <!-- containers for current temp and weather forecast -->
                     <div class="col-lg-9 mt-3">
-                        <div class="col-lg-12 row">😶‍🌫️</div>
-                        <h2 class="mt-2">temp 13 c</h2>
-                        <div class="col-lg-12 row">😶‍🌫️</div>
+                        <div class="col-12 weather-temperature">
+                            <h2 id="city">
+                                Seattle
+                            </h2>
+                            <ul>
+                                <li>Last updated: <span id="date">Monday</span></li>
+                                <li id="description"></li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="clearfix weather-temperature">
+                                    <span>😶‍🌫️</span>
+                                    <div class="float-left">
+                                        <strong id="temperature"></strong><span class="units"> <a href="#"
+                                                id="celsius-link" class="active">°C</a> | <a href="#"
+                                                id="fahrenheit-link">°F</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <ul>
+                                        <li>Humidity: <span id="humidity"></span>%</li>
+                                        <li>Wind: <span id="wind"></span> mph</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <!-- containers for weather forecast -->
+                        <div class="row">
+                            <div class="col-2">
+                                <div class="weather-forcast-date">Tuesday</div>
+                                <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt=""
+                                    width="36px" />
+                                <div class="forecast-temperature">
+                                    <span class="weather-forecast-temperature-max">
+                                        XX°
+                                    </span>
+                                    <span class="weather-forecast-temperature-min">
+                                        XX°
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
 
                     </div>
                 </div>
 
             </div>
+            <footer>
+                <small>
+                    <a href="https://github.com/Amjcorey/weather_dash_app" target="_blank">
+                        Open-sourced code</a>
+                    by Amanda Corey
+                </small>
+            </footer>
         </div>
+    </div>
 
-        <script src="src/weather.js"></script>
+
+
+    <script src="src/weather.js"></script>
 </body>
 
 </html>
