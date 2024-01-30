@@ -20,15 +20,17 @@
                 <div class="row">
 
                     <aside class="col-lg-3">
-                        <form id="search-form" class="mb-3">
+                        <form class="mb-3 search-form" id="search-form">
                             <div class="row">
                                 <div class="col-12">
-                                    <input type="search" placeholder="Search by city..." class="form-control"
-                                        id="input-city" autocomplete="off">
+                                    <input type="search" placeholder="Enter city name..." required
+                                        id="search-input-form" class="search-input-form" />
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <input type="submit" value="Search" class="btn btn-primary btn-block my-2">
+                                        <form action="">
+                                            <input type="submit" value="Search" class="search-form-button" />
+                                            </form>
                                     </div>
                                     <div class="col-12">
                                         <button type="button" class="btn btn-primary btn-block my-2" id="location">
@@ -41,21 +43,22 @@
 
                         <!-- space for location overview and recent search section; city and last updated search -->
                         <!-- localstorage -->
-                        
+
                     </aside>
 
 
                     <!-- containers for current temp and weather forecast -->
-
-                    <div class="col-lg-9 mt-3">
+<main>
+<div class="col-lg-9 mt-3 weather-dash-data">
                         <div class="col-12 weather-temperature">
-                            <h2 id="city">
-                                Seattle
-                            </h2>
-                            <ul>
-                                <li>Last updated: <span id="date">Monday</span></li>
-                                <li id="description"></li>
-                            </ul>
+                           <h1 class="weather-dash-city" id="city">Seattle</h1>
+                           <p class="weather-dash-details">
+                            <span id="time"></span>,
+                            <span id="description"></span>
+                            <br/>
+                            Humidity: <strong id="humidity"></strong>, Wind: <strong id="humidity"></strong>
+                           </p>
+
                         </div>
                         <div class="row">
                             <div class="col-6">
@@ -76,7 +79,9 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div>    
+</main>
+                    
 
 
                         <!-- containers for weather forecast -->
