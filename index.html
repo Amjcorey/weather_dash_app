@@ -4,158 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="src/weather.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/d87b7582e6.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather Dashboard App</title>
 </head>
 
 <body>
-
-    <div class="weather-dash-container">
-        <div class="weather-dash-wrapper">
-            <div class="weatherdash-app">
-                <div class="row">
-
-                    <aside class="col-lg-3">
-                        <form class="mb-3 search-form" id="search-form">
-                            <div class="row">
-                                <div class="col-12">
-                                    <input type="search" placeholder="Enter city name..." required
-                                        id="search-input-form" class="search-input-form" />
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <form action="">
-                                            <input type="submit" value="Search" class="search-form-button" />
-                                            </form>
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="button" class="btn btn-primary btn-block my-2" id="location">
-                                            Location📍
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-                        <!-- space for location overview and recent search section; city and last updated search -->
-                        <!-- localstorage -->
-
-                    </aside>
-
-
-                    <!-- containers for current temp and weather forecast -->
-<main>
-<div class="col-lg-9 mt-3 weather-dash-data">
-                        <div class="col-12 weather-temperature">
-                           <h1 class="weather-dash-city" id="city">Seattle</h1>
-                           <p class="weather-dash-details">
-                            <span id="time"></span>,
-                            <span id="description"></span>
-                            <br/>
-                            Humidity: <strong id="humidity"></strong>, Wind: <strong id="humidity"></strong>
-                           </p>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="clearfix weather-temperature">
-                                    <span>😶‍🌫️</span>
-                                    <div class="float-left">
-                                        <strong id="temperature"></strong><span class="units"> <a href="#"
-                                                id="celsius-link" class="active">°C</a> | <a href="#"
-                                                id="fahrenheit-link">°F</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div>
-                                    <ul>
-                                        <li>Humidity: <span id="humidity"></span>%</li>
-                                        <li>Wind: <span id="wind"></span> mph</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>    
-</main>
-                    
-
-
-                        <!-- containers for weather forecast -->
-                        <div class="row">
-                            <div class="col-2">
-                                <div class="weather-forcast-date">Tuesday</div>
-                                <p>😶‍🌫️</p>
-                                <div class="forecast-temperature">
-                                    <span class="weather-forecast-temperature-max">
-                                        XX°
-                                    </span>
-                                    <span class="weather-forecast-temperature-min">
-                                        XX°
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="col-2">
-                                <div class="weather-forcast-date">Wednesday</div>
-                                <p>😶‍🌫️</p>
-                                <div class="forecast-temperature">
-                                    <span class="weather-forecast-temperature-max">
-                                        XX°
-                                    </span>
-                                    <span class="weather-forecast-temperature-min">
-                                        XX°
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="col-2">
-                                <div class="weather-forcast-date">Thursday</div>
-                                <p>😶‍🌫️</p>
-                                <div class="forecast-temperature">
-                                    <span class="weather-forecast-temperature-max">
-                                        XX°
-                                    </span>
-                                    <span class="weather-forecast-temperature-min">
-                                        XX°
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="col-2">
-                                <div class="weather-forcast-date">Friday</div>
-                                <p>😶‍🌫️</p>
-                                <div class="forecast-temperature">
-                                    <span class="weather-forecast-temperature-max">
-                                        XX°
-                                    </span>
-                                    <span class="weather-forecast-temperature-min">
-                                        XX°
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+    <div class="weatherdash-app">
+            <aside>
+                <form class=" search-form" id="search-form">
+                    <div>
+                        <div>
+                            <input type="search" placeholder="Enter city name..." required id="search-form-input"
+                                class="search-form-input" />
+                            <input type="submit" value="Search" class="search-form-button" />
                     </div>
-                </div>
-            </div>
+                </form>
+
+                <!-- space for location overview and recent search section; city and last updated search -->
+                <!-- localstorage -->
+            </aside>
+
+
+            <!-- containers for current temp and weather forecast -->
+            <main>
+                <div class="weather-dash-data">
+                    <div>
+                        <h1 class="weather-dash-city" id="city"></h1>
+                        <p class="weather-dash-details">
+                            <span id="time">10:00 AM </span>,
+                            <span id="description">Cloudy </span>
+                            <br />
+                            Humidity: <strong id="humidity">30% </strong>, Wind: <strong id="wind-speed">5 mph</strong>
+                        </p>
+                    </div>
+
+                    <div class="weather-dash-temp-container">
+                     <div class="icon"></div>
+                     <div class="weather-dash-temperature"></div>
+                     <div class="weather-dash-units"> °C | °F </div>
+                    </div>
+
+            <!-- containers for weather forecast -->
+            <div class="weather-dash-forecast" id="forecast"></div>
+
+            </main>
 
 
 
-
-            <div>
-                <footer class="my-5">
-                    <small>
-                        <a href="https://github.com/Amjcorey/weather_dash_app" target="_blank">
-                            Open-sourced code</a>
-                        by Amanda Corey
-                    </small>
-                </footer>
-            </div>
-
-        </div>
+    <div>
+        <footer>
+            <p> Coded with 🩷 by Amanda Corey. View source code at
+                <a href="https://github.com/Amjcorey/weather_dash_app" target="_blank">
+                    Open-sourced code</a>.
+                </p>
+        </footer>
     </div>
 
 
