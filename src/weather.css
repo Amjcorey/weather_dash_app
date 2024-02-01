@@ -1,3 +1,19 @@
+/* document colors */
+:root {
+  color: #000;
+  color: #C17553;
+  color: #FAB59A;
+  color: #D4C7AC;
+color:#EEDFD0 ;
+color: #F8B463;
+color: #CDA447;
+color: #FFFFFF;
+
+color: #f9f7fe;
+
+}
+
+
 body {
   background-color: #f9f7fe;
   font-family: "Roboto", sans-serif;
