@@ -4,9 +4,11 @@
 
 
 // Local time
-let currentTime = new Date();
+
 
 function formateDate(date) {
+    let minutes = date.getMinutes();
+    let hours = date.getHours();
     let days = [
         "Sunday",
         "Monday",
@@ -17,30 +19,13 @@ function formateDate(date) {
         "Saturday"
     ];
 
-    let months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-    ];
-
-    let currentYear = date.getFullYear();
     let currentDay = days[date.getDay()];
-    let currentMonth = months[date.getMonth()];
-    let currentDate = date.getDate();
 
-    let formattedDate = `Date: ${currentDay}, ${currentMonth} ${currentDate}, ${currentYear}`;
+    if (minutes < 10) {
+        minutes = `0${minutes}`;
+    }
 
-    return formattedDate();
-
+    return `${day} ${hours}:${minutes}`;
 }
 
 
