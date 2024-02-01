@@ -1,10 +1,17 @@
 //Refreshed weather data
 function refreshWeather(response) {
+    let temperatureElement = document.querySelector("#temperature");
+    let temperature = response.data.temperature.current;
+    let cityElement = document.querySelector("#city");
     let timeElement = document.querySelector("#time");
     let date = new Date(response.data.time * 1000);
+    let iconElement = document.querySelector("#icon");
 
 //Elements
-    timeElement.innerHTML = formateDate(date);
+cityElement.innerHTML = response.data.city;
+    timeElement.innerHTML = formatDate(date);
+    temperatureElement.innerHTML = Math.round(temperature);
+    iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 }
 
 
@@ -13,7 +20,7 @@ function refreshWeather(response) {
 // Local time
 
 
-function formateDate(date) {
+function formatDate(date) {
     let minutes = date.getMinutes();
     let hours = date.getHours();
     let days = [
