@@ -5,4 +5,5 @@
 # my references
 https://github.com/Amjcorey/vanilla_weather-app
 https://github.com/rajeswarivmarimuthu/weather-dashboard/tree/main
-Utilized API resources at https://www.shecodes.io/learn/apis/weather while personal account was unaccessible.
+https://github.com/matthieua/meteo
+Utilized API resources at https://www.shecodes.io/learn/apis/weather
