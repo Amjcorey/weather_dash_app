@@ -33,19 +33,19 @@ function formatDate(date) {
         "Saturday"
     ];
 
-    let currentDay = days[date.getDay()];
+    let day = days[date.getDay()];
 
     if (minutes < 10) {
         minutes = `0${minutes}`;
     }
 
-    return `${days} ${hours}:${minutes}`;
+    return `${day} ${hours}:${minutes}`;
 }
 
 
 function searchCity(city) {
-    let apiKey  = "70de72ce25d0801c193edd1d17ced422";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?query=${city}&key=${apiKey}&units=metric`;
+    let apiKey  = "4ba3572496537oebd26f86a5bb6t80fa";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&unites=imperial`;
  console.log(apiUrl);
     axios.get(apiUrl).then(refreshWeather);
 }
@@ -53,8 +53,8 @@ function searchCity(city) {
 
 function handleSearchSubmit(event) {
     event.preventDefault();
-    let searchInput = document.querySelector("#search-input-form");
-
+    let searchInput = document.querySelector("#search-form-input");
+console.log(searchInput.value);
     searchCity(searchInput.value);
 }
 
