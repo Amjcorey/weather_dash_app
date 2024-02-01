@@ -1,4 +1,11 @@
+//Refreshed weather data
+function refreshWeather(response) {
+    let timeElement = document.querySelector("#time");
+    let date = new Date(response.data.time * 1000);
 
+//Elements
+    timeElement.innerHTML = formateDate(date);
+}
 
 
 
@@ -25,13 +32,14 @@ function formateDate(date) {
         minutes = `0${minutes}`;
     }
 
-    return `${day} ${hours}:${minutes}`;
+    return `${days} ${hours}:${minutes}`;
 }
 
 
 function searchCity(city) {
-    let apiKey  = "XX";
-    let apiUrl = "xxx";
+    let apiKey  = "70de72ce25d0801c193edd1d17ced422";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+ // console.log(apiUrl);
     axios.get(apiUrl).then(refreshWeather);
 }
 
