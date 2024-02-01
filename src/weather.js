@@ -35,7 +35,7 @@ function formatDate(date) {
 
     let day = days[date.getDay()];
 
-    if (minutes <= 10) {
+    if (minutes < 10) {
         minutes = `0${minutes}`;
     }
 
@@ -45,7 +45,7 @@ function formatDate(date) {
 
 function searchCity(city) {
     let apiKey  = "4ba3572496537oebd26f86a5bb6t80fa";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&unites=imperial`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
  console.log(apiUrl);
     axios.get(apiUrl).then(refreshWeather);
 }
@@ -56,6 +56,13 @@ function handleSearchSubmit(event) {
     let searchInput = document.querySelector("#search-form-input");
 console.log(searchInput.value);
     searchCity(searchInput.value);
+}
+
+//Get time stamp
+function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    return days[date.getDay()];
 }
 
 let searchFormElement = document.querySelector("#search-form");
