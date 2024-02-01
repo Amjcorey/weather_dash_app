@@ -11,7 +11,7 @@ function refreshWeather(response) {
 cityElement.innerHTML = response.data.city;
     timeElement.innerHTML = formatDate(date);
     temperatureElement.innerHTML = Math.round(temperature);
-    iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-dash-icon" />`;
+    iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 }
 
 
@@ -45,8 +45,8 @@ function formatDate(date) {
 
 function searchCity(city) {
     let apiKey  = "70de72ce25d0801c193edd1d17ced422";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
- // console.log(apiUrl);
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?query=${city}&key=${apiKey}&units=metric`;
+ console.log(apiUrl);
     axios.get(apiUrl).then(refreshWeather);
 }
 
