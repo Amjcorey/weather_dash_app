@@ -1,5 +1,8 @@
 /* document colors */
-:root {
+
+
+  /* 
+  :root {
   color: #000;
   color: #C17553;
   color: #FAB59A;
@@ -12,7 +15,7 @@ color: #FFFFFF;
 
 color: #f9f7fe;
 
-}
+}*/
 
 
 body {
@@ -87,6 +90,10 @@ main {
   font-weight: 500;
 }
 
+.weather-dash-details strong {
+  color: #f65282;
+}
+
 .weather-dash-temp-container {
   display: flex;
 }
@@ -127,7 +134,7 @@ main {
   color: #f65282;
   margin-top: 10px;
   display: flex;
-  justify-content: centerS;
+  justify-content: center;
 }
 
 footer {
