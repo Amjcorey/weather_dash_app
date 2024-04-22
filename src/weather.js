@@ -59,6 +59,29 @@ function formatDay(timestamp) {
   return days[date.getDay()];
 }
 
+function storeSearchData(city) {
+  let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+  if (!searchHistory.includes(city)) {
+    searchHistory.push(city);
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+  }
+}
+
+function updateSearchInputHistory() {
+  const searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+  const searchHistoryContainer = document.getElementById("search-input-history");
+
+  searchHistoryContainer.innerHTML = "";
+
+  searchHistory.forEach((city) => {
+    const historyData = document.createElement("div");
+    historyData.className = "history-data";
+    historyData.addEventListener("click", () => {
+      displayWeather
+    })
+  })
+}
+
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
