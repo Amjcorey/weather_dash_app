@@ -72,37 +72,45 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
-//Get time stamp
-function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  return days[date.getDay()];
+// Err message function
+function displayError(message) {
+  let errorContainer = document.getElementById('error-message');
+  errorContainer.textContent = message;
+  errorContainer.classList.remove('hidden');
+  setTimeout(() => errorContainer.classList.add('hidden', 3000)) //confirm port
 }
 
-function storeSearchData(city) {
-  let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-  if (!searchHistory.includes(city)) {
-    searchHistory.push(city);
-    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-  }
-}
+// //Get time stamp
+// function formatDay(timestamp) {
+//   let date = new Date(timestamp * 1000);
+//   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+//   return days[date.getDay()];
+// }
 
-function updateSearchInputHistory() {
-  const searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-  const searchHistoryContainer = document.getElementById("search-input-history");
+// function storeSearchData(city) {
+//   let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+//   if (!searchHistory.includes(city)) {
+//     searchHistory.push(city);
+//     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+//   }
+// }
 
-  searchHistoryContainer.innerHTML = "";
+// function updateSearchInputHistory() {
+//   const searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+//   const searchHistoryContainer = document.getElementById("search-input-history");
 
-  searchHistory.forEach((city) => {
-    const historyData = document.createElement("div");
-    historyData.className = "history-data";
-    historyData.addEventListener("click", () => {
-      displayWeather
-    })
-  })
-}
+//   searchHistoryContainer.innerHTML = "";
 
-let searchFormElement = document.querySelector("#search-form");
-searchFormElement.addEventListener("submit", handleSearchSubmit);
+//   searchHistory.forEach((city) => {
+//     const historyData = document.createElement("div");
+//     historyData.className = "history-data";
+//     historyData.addEventListener("click", () => {
+//       displayWeather
+//     })
+//   })
+// }
+
+// let searchFormElement = document.querySelector("#search-form");
+// searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Seattle");
