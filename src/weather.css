@@ -52,18 +52,20 @@ aside {
 
 .search-form-button {
   background: #885df1;
-  padding: 15px 30px;
+  padding: 15px 28px;
   border: none;
+  display: inline-block;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 450;
   margin-left: 5px;
   border-radius: 8px;
   color: white;
 }
 
 .search-form-button:hover {
-  background: #C1C2BB;
-  color: #000;
+  background: #f9f7fe;
+  color: #885df1;  
+  font-weight: bold;
 }
 
 

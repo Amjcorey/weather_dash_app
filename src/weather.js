@@ -40,8 +40,7 @@ function refreshWeather(response) {
 function fetchLocalation(city) {
   let city = city.trim().toLowerCase();
   let apiKey = '0968472c2bf24b729bf6206c08f6fed2';
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=
-  ${lon}&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/geo/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
   console.log(apiUrl);
   // axios.get(apiUrl).then(refreshWeather);
 fetch(apiUrl).then((response) => {
@@ -65,13 +64,6 @@ fetch(apiUrl).then((response) => {
 });
 }
 
-function handleSearchSubmit(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#search-form-input");
-  console.log(searchInput.value);
-  searchCity(searchInput.value);
-}
-
 // Err message function
 function displayError(message) {
   let errorContainer = document.getElementById('error-message');
@@ -79,6 +71,20 @@ function displayError(message) {
   errorContainer.classList.remove('hidden');
   setTimeout(() => errorContainer.classList.add('hidden', 3000)) //confirm port
 }
+
+// function fetch city weather
+function fetchWeatherData(city, lat, lon) {
+  let currentUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+  let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+}
+// function handleSearchSubmit(event) {
+//   event.preventDefault();
+//   let searchInput = document.querySelector("#search-form-input");
+//   console.log(searchInput.value);
+//   searchCity(searchInput.value);
+// }
+
+
 
 // //Get time stamp
 // function formatDay(timestamp) {
