@@ -18,38 +18,91 @@
 <body>
     <h1>Weather Dashboard</h1>
     <div class="container">
-        <div class="weather-dash-wrapper">
-            <div class="search-input">
-                <h3>Enter a city</h3>
-                <input type="search" placeholder="e.g. New York" autocomplete="off" class="form-control" id="input-city">
-               <input type="submit" value="Search" class="btn">
-                <div class="divider"></div>
-                <button type="button" class="btn" id="myLocationBtn">Current Localtion 📍</button>
-            </div>
-            <div class="weather-data">
-                <div class="current-weather">
-                    <div class="weather-overview">
-                        <h2>Seattle (04/22/2024)</h2>
-                        
-                    </div>
+        <!-- left side, Search form -->
+        <div class="search-form-input">
+            <h3>Enter a city</h3>
+            <input type="search" placeholder="e.g. New York" autocomplete="off" class="form-control" id="input-city">
+            <button class="search-form-button">Search</button>
+            <div class="divider"></div>
+            <button type="button" class="location-btn" id="myLocationBtn">Current Localtion 📍</button>
+        </div>
+        <!-- Current weather and 5 day forecast, right side -->
+        <div class="weather-data">
+
+            <div class="current-weather">
+                <div class="weather-overview">
+                    <h2>Seattle (04/22/2024)</h2>
+                    <h4>Temperature: </h4>
+                    <h4>Wind: </h4>
+                    <h4>Humidity %</h4>
                 </div>
+                <div class="weather-icon">
+                    <img src="https://openweathermap.org/img/wn/10d@4x.png" alt="weather-icon">
+                    <h4>Rain</h4>
+                </div>
+            </div>
+            <!-- Weather Forecast -->
+            <div class="weather-forecast">
+                <h2>5-Day Forecast</h2>
+                <ul class="forecast-cards">
+                    <!-- Day 1 -->
+                    <li class="card">
+                        <h3>04/22/2024</h3>
+                        <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon">
+                        <h4>Temp: </h4>
+                        <h4>Wind: mps</h4>
+                        <h4>Humidity: %</h4>
+                    </li>
+                    <!-- Day 2 -->
+                    <li class="card">
+                        <h3>04/22/2024</h3>
+                        <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon">
+                        <h4>Temp: </h4>
+                        <h4>Wind: mps</h4>
+                        <h4>Humidity: %</h4>
+                    </li>
+                    <!-- Day 3 -->
+                    <li class="card">
+                        <h3>04/22/2024</h3>
+                        <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon">
+                        <h4>Temp: </h4>
+                        <h4>Wind: mps</h4>
+                        <h4>Humidity: %</h4>
+                    </li>
+                    <!-- Day 4 -->
+                    <li class="card">
+                        <h3>04/22/2024</h3>
+                        <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon">
+                        <h4>Temp: </h4>
+                        <h4>Wind: mps</h4>
+                        <h4>Humidity: %</h4>
+                    </li>
+                    <!-- Day 5 -->
+                    <li class="card">
+                        <h3>04/22/2024</h3>
+                        <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon">
+                        <h4>Temp: </h4>
+                        <h4>Wind: mps</h4>
+                        <h4>Humidity: %</h4>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 
-        <div class="footer">
-            <footer>
-                <small> Coded with 🩷 by Amanda Corey. View source code on
-                    <a href="https://github.com/Amjcorey/weather_dash_app" target="_blank">
-                        GitHub</a>.
-                </small>
-            </footer>
-        </div>
+    <div class="footer">
+        <footer>
+            <small> Coded with 🩷 by Amanda Corey. View source code on
+                <a href="https://github.com/Amjcorey/weather_dash_app" target="_blank">
+                    GitHub</a>.
+            </small>
+        </footer>
+    </div>
 
 
     </div>
     <script src="src/weather.js"></script>
- 
+
 </body>
 
 </html>
