@@ -1,88 +1,106 @@
-//Refreshed weather data
-function refreshWeather(response) {
-  let temperatureElement = document.querySelector("#temperature");
-  let temperature = response.data.temperature.current;
-  let cityElement = document.querySelector("#city");
-  let timeElement = document.querySelector("#time");
-  let date = new Date(response.data.time * 1000);
-  let iconElement = document.querySelector("#icon");
+let inputCity = document.querySelector(".form-control");
+let searchButton = document.querySelector(".search-form-button");
+let currentWeatherDiv = document.querySelector(".current-weather");
+let weatherCardDiv = document.querySelector(".forecast-cards");
 
-  //Elements
-  cityElement.innerHTML = response.data.city;
-  timeElement.innerHTML = formatDate(date);
-  temperatureElement.innerHTML = Math.round(temperature);
-  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
-}
+// My api key
+let apiKey = "0968472c2bf24b729bf6206c08f6fed2";
 
-// Local time
-
-function formatDate(date) {
-  let minutes = date.getMinutes();
-  let hours = date.getHours();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  let day = days[date.getDay()];
-
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
+let createWeatherCard = (cityName, weatherItem, index) => {
+  if (index === 0) {
+    // HTML for the main weather display
+    `
+<div class="weather-overview">
+                    <h2>${cityName} (${weatherItem.dt_txt.split(" ")[0]})</h2>
+                    <h4>Temperature ${weatherItem.main.temp} F</h4>
+                    <h4>High ${weatherItem.main.temp_max} | Low ${weatherItem.main.temp_min}</h4>
+                    <h4>Wind: ${weatherItem.wind.speed}MPS</h4>
+                    <h4>Humidity: ${weatherItem.main.humidity}%</h4>
+                </div>
+                <div class="weather-icon">
+                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon
+                  }@4x.png" alt="weather-icon">
+                    <h4>${weatherItem.weather[0].description}</h4>
+                </div>
+`;
+  } else {
+    // HTML for five day forecast
+    return `                    
+  <li class="card">
+  <h3>(${weatherItem.dt_txt.split(" ")[0]})</h3>
+  <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon
+      }@2x.png" alt="weather-icon">
+  <h4>Temp: ${weatherItem.main.temp}</h4>
+  <h4>H:${weatherItem.main.temp_max} | L:${weatherItem.main.temp_min}</h4>
+  <h4>Wind: ${weatherItem.wind.speed}MPS</h4>
+</li>
+`;
   }
+};
 
-  return `${day}, ${hours}:${minutes}`;
-}
+let getWeatherInformation = (cityName, lat, lon) => {
+  let apiUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
 
-function searchCity(city) {
-  let apiKey = "4ba3572496537oebd26f86a5bb6t80fa";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
-  console.log(apiUrl);
-  axios.get(apiUrl).then(refreshWeather);
-}
+  fetch(apiUrl)
+    .then((res) => res.json())
+    .then((data) => {
+      // Filters the forecast to get only one forecast per day
+      let forecastDays = [];
+      let fiveDayForecast = data.list.filter((forecast) => {
+        let forecastDate = new Date(forecast.dt_txt).getDate();
+        if (!forecastDays.includes(forecastDate)) {
+          return forecastDays.push(forecastDate);
+        }
+      });
 
-function handleSearchSubmit(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#search-form-input");
-  console.log(searchInput.value);
-  searchCity(searchInput.value);
-}
+      //Clear previous weather data
+      inputCity.value = "";
+      currentWeatherDiv.innerHTML = "";
+      weatherCardDiv.innerHTML = "";
 
-//Get time stamp
-function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  return days[date.getDay()];
-}
-
-function storeSearchData(city) {
-  let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-  if (!searchHistory.includes(city)) {
-    searchHistory.push(city);
-    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-  }
-}
-
-function updateSearchInputHistory() {
-  const searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-  const searchHistoryContainer = document.getElementById("search-input-history");
-
-  searchHistoryContainer.innerHTML = "";
-
-  searchHistory.forEach((city) => {
-    const historyData = document.createElement("div");
-    historyData.className = "history-data";
-    historyData.addEventListener("click", () => {
-      displayWeather
+      // console.log(fiveDayForecast);
+      //Adding weather cards to DOM
+      fiveDayForecast.forEach(weatherItem, (index) => {
+        if (index === 0) {
+          currentWeatherDiv.insertAdjacentHTML(
+            "beforeend",
+            createWeatherCard(cityName, weatherItem, index)
+          );
+        } else {
+          weatherCardDiv.insertAdjacentHTML(
+            "beforeend",
+            createWeatherCard(cityName, weatherItem, index)
+          );
+        }
+      });
     })
-  })
-}
+    .catch(() => {
+      alert("Uh oh! An error occured while fetching the weather forecast.");
+    });
+};
 
-let searchFormElement = document.querySelector("#search-form");
-searchFormElement.addEventListener("submit", handleSearchSubmit);
+// Use Geocoding API from OW
+let getCityCoordinates = () => {
+  let cityName = inputCity.value.trim();
+  if (!cityName) return; // Return if search form is empty
+  let geoApiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${apiKey}&units=imperial`;
 
-searchCity("Seattle");
+  // console.log(geoApiUrl);
+
+  // Get entered city coordinates (lat, lon, and name) from API response
+  fetch(geoApiUrl)
+    .then((res) => res.json())
+    .then((data) => {
+      //  console.log(data);
+      if (!data.length)
+        return alert(`Oh snap! No coordinates where found for ${cityName}.`);
+      let { name, lat, lon } = data[0];
+      getWeatherInformation(name, lat, lon);
+    })
+    .catch(() => {
+      alert("Uh oh! An error occured while fetching those coordinates.");
+    });
+  // console.log(cityName);
+};
+
+searchButton.addEventListener("click", getCityCoordinates);
