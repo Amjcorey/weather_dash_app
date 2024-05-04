@@ -1,5 +1,6 @@
 let inputCity = document.querySelector(".form-control");
 let searchButton = document.querySelector(".search-form-button");
+let currentLocationBtn = document.querySelector(".location-btn");
 let currentWeatherDiv = document.querySelector(".current-weather");
 let weatherCardDiv = document.querySelector(".forecast-cards");
 
@@ -32,7 +33,6 @@ let createWeatherCard = (cityName, weatherItem, index) => {
       }@2x.png" alt="weather-icon">
   <h4>Temp: ${weatherItem.main.temp}</h4>
   <h4>H:${weatherItem.main.temp_max} | L:${weatherItem.main.temp_min}</h4>
-  <h4>Wind: ${weatherItem.wind.speed}MPS</h4>
 </li>
 `;
   }
@@ -103,4 +103,42 @@ let getCityCoordinates = () => {
   // console.log(cityName);
 };
 
+
+// Get current location
+let searchCurrentLocation = () => {
+  navigator.geolocation.getCurrentPosition (
+    position => {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      let apiKey = "0968472c2bf24b729bf6206c08f6fed2";
+      let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+      fetch(geoApiUrl)
+      .then((res) => res.json())
+      .then((data) => {
+// console.log(data);
+      })
+      .catch(() => {
+        alert("Uh oh! An error occured while fetching the city location.");
+      });
+    }, error => {
+ console.log(error.code === error.PERMISSION_DENIED) {
+  confirm("Cannot find current location. Please allow access to current location in browser settings and try again.");
+ }
+    }
+  );
+}
+
+function getCurrentPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchCurrentLocation);
+}
+
+// Add search history to local storage
+// function executeSearch(searchCity) {
+//   searchHistory.push(searchCity);
+//   localStorage.setItem("searches", JSON.stringify(searchHistory));
+//   getWeather(searchCity);
+// }
+
+currentLocationBtn.addEventListener("click", searchCurrentLocation);
 searchButton.addEventListener("click", getCityCoordinates);
